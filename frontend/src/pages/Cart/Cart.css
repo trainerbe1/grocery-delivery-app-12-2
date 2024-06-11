@@ -1,0 +1,170 @@
+.cart {
+  margin-top: 100px;
+}
+
+.cart-items {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart-items-title {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr; /* Menyesuaikan lebar kolom */
+  align-items: center;
+  color: grey;
+  font-size: max(1vw, 12px);
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: center; /* Pusatkan teks di judul */
+}
+
+.cart-items-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr; /* Menyesuaikan lebar kolom */
+  align-items: center;
+  padding: 10px;
+  text-align: center; /* Pusatkan teks di item */
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-items-item img {
+  width: 100px;
+  margin: 0 auto; /* Center the image */
+}
+
+.cart-items-item button.btnplus {
+  background-color: limegreen;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+  width: 120px;
+}
+
+.cart-items-item button.btnplus:hover {
+  background-color: mediumseagreen;
+}
+
+.cart-items-item button {
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 20px;
+  width: 120px;
+}
+
+.cart-items-item button:hover {
+  background-color: orangered;
+}
+
+/* Style untuk container utama */
+.cart-container {
+  max-width: 600px; /* Sesuaikan dengan lebar yang diinginkan */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style untuk bagian bawah keranjang */
+.cart-bottom {
+  border-top: 2px solid #ccc;
+  padding-top: 20px;
+}
+
+/* Style untuk judul Cart Totals */
+.card-total h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style untuk detail subtotal, biaya pengiriman, dan total */
+.cart-totals-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px; /* Tambahkan padding bawah */
+  border-bottom: 1px solid #ccc; /* Tambahkan garis bawah */
+}
+
+/* Style untuk tombol Checkout */
+.btncheckout {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 40px;
+  width: 800px;
+}
+
+.btncheckout:hover {
+  background-color: #2686ec;
+}
+
+/* Style untuk bagian promo code */
+.cart-promocode {
+  margin-top: 20px;
+}
+
+.cart-promocode p {
+  margin-bottom: 10px;
+}
+
+.cart-promocode-input {
+  display: flex;
+}
+
+.cart-promocode-input input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.cart-promocode-input button {
+  padding: 10px 20px;
+  background-color: #2c7ace;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.cart-promocode-input button:hover {
+  background-color: #2686ec;
+}
+
+.btncheckout {
+  background-color: #2c7ace;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 8px;
+  max-width: 200px; /* Batasi lebar maksimum */
+  width: 100%; /* Lebar mengikuti konten */
+  box-sizing: border-box; /* Memperhitungkan padding dalam perhitungan lebar */
+  margin-left: auto; /* Geser tombol ke kanan */
+  margin-right: auto; /* Geser tombol ke kanan */
+}
+
+@media (max-width: 750px) {
+  .cart-bottom {
+    flex-direction: column-reverse;
+  }
+  .cart-promocode {
+    justify-content: start;
+  }
+}
