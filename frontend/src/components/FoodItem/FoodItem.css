@@ -58,3 +58,7 @@
     border-radius: 50px;
     background-color: white;
 }
+
+.food-item-counter p {
+    margin: 0px;
+}

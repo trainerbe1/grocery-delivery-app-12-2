@@ -2,23 +2,14 @@ import React, { useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
-const Cart = () => {
-  const { cartItems, food_list, removeFromCart, addToCart } = useContext(StoreContext);
 
+const Cart = () => {
+  const { cartItems, removeFromCart, addToCart, products, subtotal, total } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  const getSubtotal = () => {
-    return food_list.reduce((acc, item) => {
-      if (cartItems[item._id] > 0) {
-        return acc + item.price * cartItems[item._id];
-      }
-      return acc;
-    }, 0);
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
-
-  const subtotal = getSubtotal();
-  const deliveryFee = subtotal > 0 ? 10 : 0; // Contoh biaya pengiriman tetap
-  const total = subtotal + deliveryFee;
 
   return (
     <div className="cart">
@@ -30,21 +21,22 @@ const Cart = () => {
           <p>Jumlah</p>
           <p>Total</p>
           <p>Hapus</p>
-          <p>Tambah</p> {/* Tambah kolom tambah */}
+          <p>Tambah</p>
         </div>
         <br />
         <hr />
-        {food_list.map((item) => {
-          if (cartItems[item._id] > 0) {
+        {products.map((item) => {
+          if (cartItems[item.id] > 0) {
+            const imageUrl = `http://47.250.45.119/images/${item.image}`;
             return (
-              <div key={item._id} className="cart-items-item">
-                <img src={item.image} alt={item.name} />
+              <div key={item.id} className="cart-items-item">
+                <img src={imageUrl} alt={item.name} />
                 <p>{item.name}</p>
-                <p>Rp{item.price.toFixed(3)}</p>
-                <p>{cartItems[item._id]}</p>
-                <p>Rp{(item.price * cartItems[item._id]).toFixed(3)}</p>
-                <button onClick={() => removeFromCart(item._id)}>x</button>
-                <button className="btnplus" onClick={() => addToCart(item._id)}>+</button> {/* Tambah kelas btnplus */}
+                <p>Rp{formatNumberWithCommas(item.price)}</p>
+                <p>{cartItems[item.id]}</p>
+                <p>Rp{formatNumberWithCommas(item.price * cartItems[item.id])}</p>
+                <button onClick={() => removeFromCart(item.id)}>x</button>
+                <button className="btnplus" onClick={() => addToCart(item.id)}>+</button>
               </div>
             );
           }
@@ -66,17 +58,13 @@ const Cart = () => {
         </div>
         <div className="cart-totals-details">
           <p>Subtotal</p>
-          <p>Rp{subtotal.toFixed(3)}</p>
-        </div>
-        <div className="cart-totals-details">
-          <p>Biaya Pengiriman</p>
-          <p>Rp{deliveryFee.toFixed(3)}</p>
+          <p>Rp{formatNumberWithCommas(subtotal)}</p>
         </div>
         <div className="cart-totals-details">
           <p>Total</p>
-          <p>Rp{total.toFixed(3)}</p>
+          <p>Rp{formatNumberWithCommas(total)}</p>
         </div>
-        <button onClick={()=>navigate('/order')} className="btncheckout">Lanjut Pembayaran</button>
+        <button onClick={() => navigate('/order')} className="btncheckout">Lanjut Pembayaran</button>
       </div>
     </div>
   );
