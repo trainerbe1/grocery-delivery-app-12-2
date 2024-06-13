@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../Context/StoreContext';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { API_URL } from '../../../utils';
 
 
 const PlaceOrder = () => {
+
   const { cartItems, products, subtotal, total } = useContext(StoreContext);
   const [userInfo, setUserInfo] = useState({ firstName: '', lastName: '', email: '', phone: '' });
   const [errors, setErrors] = useState({});
@@ -41,7 +42,7 @@ const PlaceOrder = () => {
       }));
 
     const orderData = {
-      user_id: 1,
+      user_id: localStorage.getItem("user_id"),
       order_id: `order-id-${Date.now()}`,
       items: orderItems,
       total_amount: total,

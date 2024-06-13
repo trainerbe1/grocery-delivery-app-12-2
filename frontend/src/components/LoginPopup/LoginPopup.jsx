@@ -36,6 +36,7 @@ const LoginPopup = ({ setShowLogin }) => { // Destructure setShowLogin from prop
     if (response.data.success) {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user_id", response.data.user_id)
       setShowLogin(false)
     } else {
       alert(resonse.data.message)

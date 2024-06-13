@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import { IMAGE_URL } from "../../../utils";
 
 const Cart = () => {
   const { cartItems, removeFromCart, addToCart, products, subtotal, total } = useContext(StoreContext);
@@ -27,7 +28,7 @@ const Cart = () => {
         <hr />
         {products.map((item) => {
           if (cartItems[item.id] > 0) {
-            const imageUrl = `http://47.250.45.119/images/${item.image}`;
+            const imageUrl = `${IMAGE_URL}/${item.image}`;
             return (
               <div key={item.id} className="cart-items-item">
                 <img src={imageUrl} alt={item.name} />

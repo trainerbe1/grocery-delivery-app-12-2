@@ -3,15 +3,15 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../Context/StoreContext';
 import { IMAGE_URL } from '../../../utils';
-import loading from '../../assets/gif/loading.gif'
+import loading from '../../assets/gif/loading.gif';
 
-const FoodItem = ({ id, name, description, price, image  }) => {
-    const { cartItems, addToCart, removeFromCart, loadingProducts, setProductLoaded } = useContext(StoreContext);
+const FoodItem = ({ id, name, description, price, image, setShowLogin }) => {
+    const { cartItems, addToCart, removeFromCart, loadingProducts, setProductLoaded, token } = useContext(StoreContext);
     const [imageLoaded, setImageLoaded] = useState(false);
 
     const imageUrl = `${IMAGE_URL}/${image}`;
     const formatNumberWithCommas = (number) => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
     useEffect(() => {
@@ -24,20 +24,28 @@ const FoodItem = ({ id, name, description, price, image  }) => {
     }, [imageUrl, id, setProductLoaded]);
 
     if (loadingProducts[id]) {
-        return <div><img src={loading} /></div>;
+        return <div><img src={loading} alt="Loading..." /></div>;
     }
+
+    const handleAddToCart = () => {
+        if (token) {
+            addToCart(id);
+        } else {
+            setShowLogin(true)
+        }
+    };
 
     return (
         <div className='food-item'>
             <div className="food-item-img-container">
                 <img className="food-item-image" src={imageUrl} alt='' />
                 {(!cartItems || !cartItems[id]) ? (
-                    <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt="" />
+                    <img className='add' onClick={handleAddToCart} src={assets.add_icon_white} alt="Add" />
                 ) : (
                     <div className='food-item-counter'>
-                        <img onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt='' />
+                        <img onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt='Remove' />
                         <p>{cartItems[id]}</p>
-                        <img onClick={() => addToCart(id)} src={assets.add_icon_green} alt='' />
+                        <img onClick={handleAddToCart} src={assets.add_icon_green} alt='Add' />
                     </div>
                 )}
             </div>
@@ -55,6 +63,3 @@ const FoodItem = ({ id, name, description, price, image  }) => {
 };
 
 export default FoodItem;
-
-
-

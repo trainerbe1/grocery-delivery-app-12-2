@@ -13,8 +13,15 @@ const Navbar = ({ setShowLogin }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
+    localStorage.removeItem("cartItems");
     navigate("/")
   }
+
+  const handleAddToCart = () => {
+    if (!token) {
+      setShowLogin(true)
+    } 
+};
 
   const hasItemsInCart = Object.values(cartItems).some((quantity) => quantity > 0);
 
@@ -41,7 +48,7 @@ const Navbar = ({ setShowLogin }) => {
         <img src={assets.search_icon} alt="Search" />
         <div className="navbar-search-icon">
           <Link to="/cart">
-            <img src={assets.basket_icon} alt="Cart" />
+            <img onClick={handleAddToCart} src={assets.basket_icon} alt="Cart" />
             {hasItemsInCart && <div className="dot"></div>}
           </Link>
         </div>
