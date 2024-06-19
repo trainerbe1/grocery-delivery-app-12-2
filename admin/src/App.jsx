@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
-  const url = "http://47.250.45.119:4000"
+  const url = "https://api-msib-6-grocery-delivery-02.educalab.id:4000"
 
   return (
   <div>
