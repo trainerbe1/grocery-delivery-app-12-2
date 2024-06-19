@@ -11,7 +11,7 @@ const options = {
         },
         servers: [
             {
-                url: 'https://api-msib-6-grocery-delivery-02.educalab.id:4000/api',
+                url: 'https://api-msib-6-grocery-delivery-02.educalab.id:4383/api',
             },
         ],
     },
