@@ -6,6 +6,7 @@ const dbConfig =  {
     HOST: process.env.DB_HOST,
     USER: process.env.DB_USER,
     PASSWORD: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
     DB: process.env.DB_NAME,
     dialect: process.env.DB_DIALECT,
     pool: {
