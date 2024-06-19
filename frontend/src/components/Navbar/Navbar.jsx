@@ -13,6 +13,7 @@ const Navbar = ({ setShowLogin }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
+    localStorage.removeItem("user_id");
     localStorage.removeItem("cartItems");
     navigate("/")
   }
@@ -45,7 +46,7 @@ const Navbar = ({ setShowLogin }) => {
         </a>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="Search" />
+        {/* <img src={assets.search_icon} alt="Search" /> */}
         <div className="navbar-search-icon">
           <Link to="/cart">
             <img onClick={handleAddToCart} src={assets.basket_icon} alt="Cart" />
